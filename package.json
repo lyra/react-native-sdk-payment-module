@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/lyra/react-native-sdk-payment-module#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.7",
