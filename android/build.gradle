@@ -134,7 +134,7 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation 'com.lyra:sdk:1.6.+'
+  implementation 'com.lyra:sdk:1.7.+'
 // From node_modules
 }
 
