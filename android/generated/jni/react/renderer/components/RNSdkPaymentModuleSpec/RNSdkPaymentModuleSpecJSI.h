@@ -20,7 +20,9 @@ protected:
   NativeSdkPaymentModuleCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker);
 
 public:
-  virtual double multiply(jsi::Runtime &rt, double a, double b) = 0;
+  virtual double getFormTokenVersion(jsi::Runtime &rt) = 0;
+  virtual void initialize(jsi::Runtime &rt, jsi::String publicKey) = 0;
+  virtual void process(jsi::Runtime &rt, jsi::String formToken) = 0;
 
 };
 
@@ -51,13 +53,29 @@ private:
 
     }
 
-    double multiply(jsi::Runtime &rt, double a, double b) override {
+    double getFormTokenVersion(jsi::Runtime &rt) override {
       static_assert(
-          bridging::getParameterCount(&T::multiply) == 3,
-          "Expected multiply(...) to have 3 parameters");
+          bridging::getParameterCount(&T::getFormTokenVersion) == 1,
+          "Expected getFormTokenVersion(...) to have 1 parameters");
 
       return bridging::callFromJs<double>(
-          rt, &T::multiply, jsInvoker_, instance_, std::move(a), std::move(b));
+          rt, &T::getFormTokenVersion, jsInvoker_, instance_);
+    }
+    void initialize(jsi::Runtime &rt, jsi::String publicKey) override {
+      static_assert(
+          bridging::getParameterCount(&T::initialize) == 2,
+          "Expected initialize(...) to have 2 parameters");
+
+      return bridging::callFromJs<void>(
+          rt, &T::initialize, jsInvoker_, instance_, std::move(publicKey));
+    }
+    void process(jsi::Runtime &rt, jsi::String formToken) override {
+      static_assert(
+          bridging::getParameterCount(&T::process) == 2,
+          "Expected process(...) to have 2 parameters");
+
+      return bridging::callFromJs<void>(
+          rt, &T::process, jsInvoker_, instance_, std::move(formToken));
     }
 
   private:

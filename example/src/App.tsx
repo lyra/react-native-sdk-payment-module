@@ -1,7 +1,13 @@
 import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-sdk-payment-module';
+import {
+  initialize,
+  getFormTokenVersion,
+  process,
+} from 'react-native-sdk-payment-module';
 
-const result = multiply(3, 7);
+initialize('key');
+const result = getFormTokenVersion();
+process('key');
 
 export default function App() {
   return (

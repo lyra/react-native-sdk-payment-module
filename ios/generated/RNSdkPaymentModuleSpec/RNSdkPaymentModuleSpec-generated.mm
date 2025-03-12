@@ -26,14 +26,28 @@
 
 namespace facebook::react {
   
-    static facebook::jsi::Value __hostFunction_NativeSdkPaymentModuleSpecJSI_multiply(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
-      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, NumberKind, "multiply", @selector(multiply:b:), args, count);
+    static facebook::jsi::Value __hostFunction_NativeSdkPaymentModuleSpecJSI_getFormTokenVersion(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
+      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, NumberKind, "getFormTokenVersion", @selector(getFormTokenVersion), args, count);
+    }
+
+    static facebook::jsi::Value __hostFunction_NativeSdkPaymentModuleSpecJSI_initialize(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
+      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "initialize", @selector(initialize:), args, count);
+    }
+
+    static facebook::jsi::Value __hostFunction_NativeSdkPaymentModuleSpecJSI_process(facebook::jsi::Runtime& rt, TurboModule &turboModule, const facebook::jsi::Value* args, size_t count) {
+      return static_cast<ObjCTurboModule&>(turboModule).invokeObjCMethod(rt, VoidKind, "process", @selector(process:), args, count);
     }
 
   NativeSdkPaymentModuleSpecJSI::NativeSdkPaymentModuleSpecJSI(const ObjCTurboModule::InitParams &params)
     : ObjCTurboModule(params) {
       
-        methodMap_["multiply"] = MethodMetadata {2, __hostFunction_NativeSdkPaymentModuleSpecJSI_multiply};
+        methodMap_["getFormTokenVersion"] = MethodMetadata {0, __hostFunction_NativeSdkPaymentModuleSpecJSI_getFormTokenVersion};
+        
+        
+        methodMap_["initialize"] = MethodMetadata {1, __hostFunction_NativeSdkPaymentModuleSpecJSI_initialize};
+        
+        
+        methodMap_["process"] = MethodMetadata {1, __hostFunction_NativeSdkPaymentModuleSpecJSI_process};
         
   }
 } // namespace facebook::react

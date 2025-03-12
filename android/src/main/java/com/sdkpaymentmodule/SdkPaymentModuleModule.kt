@@ -1,7 +1,9 @@
 package com.sdkpaymentmodule
 
+import android.util.Log
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
+
 
 @ReactModule(name = SdkPaymentModuleModule.NAME)
 class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
@@ -11,10 +13,17 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
     return NAME
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
-  override fun multiply(a: Double, b: Double): Double {
-    return a * b
+  override fun getFormTokenVersion(): Double {
+    Log.d("========>", "getFormTokenVersion (from native)")
+    return 12.0
+  }
+
+  override fun initialize(formToken: String?) {
+    Log.d("========>", "initialize (from native) $formToken")
+  }
+
+  override fun process(formToken: String?) {
+    Log.d("========>", "process (from native) $formToken")
   }
 
   companion object {

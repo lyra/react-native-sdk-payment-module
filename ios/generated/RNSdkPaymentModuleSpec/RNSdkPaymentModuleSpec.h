@@ -35,8 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol NativeSdkPaymentModuleSpec <RCTBridgeModule, RCTTurboModule>
 
-- (NSNumber *)multiply:(double)a
-                     b:(double)b;
+- (NSNumber *)getFormTokenVersion;
+- (void)initialize:(NSString *)publicKey;
+- (void)process:(NSString *)formToken;
 
 @end
 

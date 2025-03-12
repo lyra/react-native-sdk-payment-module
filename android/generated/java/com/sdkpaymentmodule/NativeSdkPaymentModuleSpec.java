@@ -33,5 +33,13 @@ public abstract class NativeSdkPaymentModuleSpec extends ReactContextBaseJavaMod
 
   @ReactMethod(isBlockingSynchronousMethod = true)
   @DoNotStrip
-  public abstract double multiply(double a, double b);
+  public abstract double getFormTokenVersion();
+
+  @ReactMethod
+  @DoNotStrip
+  public abstract void initialize(String publicKey);
+
+  @ReactMethod
+  @DoNotStrip
+  public abstract void process(String formToken);
 }

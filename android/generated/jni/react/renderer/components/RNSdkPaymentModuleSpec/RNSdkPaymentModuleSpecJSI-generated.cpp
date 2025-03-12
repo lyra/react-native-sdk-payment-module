@@ -11,17 +11,31 @@
 
 namespace facebook::react {
 
-static jsi::Value __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_multiply(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
-  return static_cast<NativeSdkPaymentModuleCxxSpecJSI *>(&turboModule)->multiply(
-    rt,
-    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asNumber(),
-    count <= 1 ? throw jsi::JSError(rt, "Expected argument in position 1 to be passed") : args[1].asNumber()
+static jsi::Value __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_getFormTokenVersion(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
+  return static_cast<NativeSdkPaymentModuleCxxSpecJSI *>(&turboModule)->getFormTokenVersion(
+    rt
   );
+}
+static jsi::Value __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_initialize(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
+  static_cast<NativeSdkPaymentModuleCxxSpecJSI *>(&turboModule)->initialize(
+    rt,
+    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt)
+  );
+  return jsi::Value::undefined();
+}
+static jsi::Value __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_process(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
+  static_cast<NativeSdkPaymentModuleCxxSpecJSI *>(&turboModule)->process(
+    rt,
+    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt)
+  );
+  return jsi::Value::undefined();
 }
 
 NativeSdkPaymentModuleCxxSpecJSI::NativeSdkPaymentModuleCxxSpecJSI(std::shared_ptr<CallInvoker> jsInvoker)
   : TurboModule("SdkPaymentModule", jsInvoker) {
-  methodMap_["multiply"] = MethodMetadata {2, __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_multiply};
+  methodMap_["getFormTokenVersion"] = MethodMetadata {0, __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_getFormTokenVersion};
+  methodMap_["initialize"] = MethodMetadata {1, __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_initialize};
+  methodMap_["process"] = MethodMetadata {1, __hostFunction_NativeSdkPaymentModuleCxxSpecJSI_process};
 }
 
 
