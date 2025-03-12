@@ -11,3 +11,7 @@ Integration App Example : https://github.com/lyra/react-native-sdk-payment-examp
 ## License
 
 MIT
+
+---
+
+Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
