@@ -1,6 +1,7 @@
 package com.sdkpaymentmodule
 
 import android.util.Log
+import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.module.annotations.ReactModule
@@ -22,14 +23,13 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
     return lyraSDK!!.getFormTokenVersion().toDouble()
   }
 
-  override fun initialize(publicKey: String?, options: ReadableMap?) {
+  override fun initialize(publicKey: String?, options: ReadableMap?, callback: Callback) {
     Log.d("========>", "initialize (from native) $publicKey")
   }
 
-  override fun process(formToken: String?, options: ReadableMap?) {
+  override fun process(formToken: String?, options: ReadableMap?, onSuccess: Callback?, onError: Callback?) {
     Log.d("========>", "process (from native) $formToken")
   }
-
   companion object {
     const val NAME = "SdkPaymentModule"
   }

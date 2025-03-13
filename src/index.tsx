@@ -4,10 +4,19 @@ export function getFormTokenVersion(): number {
   return SdkPaymentModule.getFormTokenVersion();
 }
 
-export function initialize(publicKey: string, options: Object): void {
-  return SdkPaymentModule.initialize(publicKey, options);
+export function initialize(
+  publicKey: string,
+  options: Object,
+  onError: (error: any) => void
+): void {
+  return SdkPaymentModule.initialize(publicKey, options, onError);
 }
 
-export function process(formToken: string, options: Object): void {
-  return SdkPaymentModule.process(formToken, options);
+export function process(
+  formToken: string,
+  options: Object,
+  onSuccess: (result: any) => void,
+  onError: (error: any) => void
+): void {
+  return SdkPaymentModule.process(formToken, options, onSuccess, onError);
 }

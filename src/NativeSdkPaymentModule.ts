@@ -5,10 +5,15 @@ export interface Spec extends TurboModule {
   getFormTokenVersion(): number;
   initialize(
     publicKey: string,
-    options: Object
-    //onError: (result: any) => void
+    options: Object,
+    onError: (error: Object) => void
   ): void;
-  process(formToken: string, options: Object): void;
+  process(
+    formToken: string,
+    options: Object,
+    onSuccess: (result: Object) => void,
+    onError: (error: Object) => void
+  ): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('SdkPaymentModule');
