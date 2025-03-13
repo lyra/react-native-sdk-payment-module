@@ -54,7 +54,6 @@ export default function App() {
   };
 
   const handlePay = useCallback(async () => {
-    console.log('::::> Pay');
     // 1.Initialize Payment SDK
     initialize(
       Config.publicKey,
@@ -71,8 +70,6 @@ export default function App() {
 
     // 2. Execute getProcessPaymentContext for get the formToken (required param in SDK process method)
     let formToken = await getProcessPaymentContext();
-
-    console.log('Form token :', formToken);
 
     // 3. Call the PaymentSDK process method
     process(

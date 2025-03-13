@@ -28,12 +28,12 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
     return lyraSDK!!.getFormTokenVersion().toDouble()
   }
 
-  override fun initialize(publicKey: String?, options: ReadableMap?, onError: Callback?) {
+  override fun initialize(publicKey: String, options: ReadableMap, onError: Callback) {
     Log.d(name, "initialize")
     try{
-      lyraSDK!!.initialize(context.applicationContext, publicKey!!, options!!.toHashMap())
+      lyraSDK!!.initialize(context.applicationContext, publicKey, options.toHashMap())
     } catch(lyraMobException: LyraMobException){
-      var map: WritableMap = WritableNativeMap()
+      val map: WritableMap = WritableNativeMap()
       try {
         val error: WritableMap = WritableNativeMap()
         error.putString("detailErrorCode", lyraMobException.detailErrorCode)
@@ -45,15 +45,15 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
       } catch (ex: JSONException) {
         Log.e(name, ex.message, ex)
       }
-      onError!!.invoke(map)
+      onError.invoke(map)
     }
   }
 
-  override fun process(formToken: String?, options: ReadableMap?, onSuccess: Callback?, onError: Callback?) {
+  override fun process(formToken: String, options: ReadableMap, onSuccess: Callback, onError: Callback) {
     Log.d(name, "process")
     try{
       lyraSDK!!.process((context.currentActivity as FragmentActivity).supportFragmentManager,
-        formToken!!, object : LyraHandler {
+        formToken, object : LyraHandler {
           override fun onSuccess(lyraResponse: LyraResponse) {
             var map: WritableMap? = null
             try {
@@ -61,7 +61,7 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
             } catch (ex: JSONException) {
               Log.e(name, ex.message, ex)
             }
-            onSuccess!!.invoke(map)
+            onSuccess.invoke(map)
           }
 
           override fun onError(lyraException: LyraException, lyraResponse: LyraResponse?) {
@@ -78,12 +78,12 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
             } catch (ex: JSONException) {
               Log.e(name, ex.message, ex)
             }
-            onError!!.invoke(map)
+            onError.invoke(map)
           }
-        }, options!!.toHashMap()
+        }, options.toHashMap()
       )
     } catch(lyraMobException: LyraMobException){
-      var map: WritableMap = WritableNativeMap()
+      val map: WritableMap = WritableNativeMap()
       try {
         val error: WritableMap = WritableNativeMap()
         error.putString("detailErrorCode", lyraMobException.detailErrorCode)
@@ -95,7 +95,7 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
       } catch (ex: JSONException) {
         Log.e(name, ex.message, ex)
       }
-      onError!!.invoke(map)
+      onError.invoke(map)
     }
   }
   companion object {
