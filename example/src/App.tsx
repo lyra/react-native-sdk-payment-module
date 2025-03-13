@@ -5,9 +5,9 @@ import {
   process,
 } from '@lyracom/react-native-sdk-payment-module';
 
-initialize('key');
+initialize('key', {});
 const result = getFormTokenVersion();
-process('key');
+process('key', {});
 
 export default function App() {
   return (

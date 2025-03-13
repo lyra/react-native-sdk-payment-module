@@ -3,8 +3,12 @@ import { TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
   getFormTokenVersion(): number;
-  initialize(publicKey: string): void;
-  process(formToken: string): void;
+  initialize(
+    publicKey: string,
+    options: Object
+    //onError: (result: any) => void
+  ): void;
+  process(formToken: string, options: Object): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('SdkPaymentModule');
