@@ -3,7 +3,7 @@ import {
   initialize,
   getFormTokenVersion,
   process,
-} from 'react-native-sdk-payment-module';
+} from '@lyracom/react-native-sdk-payment-module';
 
 initialize('key');
 const result = getFormTokenVersion();

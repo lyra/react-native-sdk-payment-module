@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-sdk-payment-module": ["./src/index"]
+      "@lyracom/react-native-sdk-payment-module": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
