@@ -2,17 +2,9 @@ import { Text, View, StyleSheet, Pressable, Alert } from 'react-native';
 import {
   initialize,
   getFormTokenVersion,
-  process,
 } from '@lyracom/react-native-sdk-payment-module';
 import Config from './Config';
 import { useCallback } from 'react';
-
-process(
-  'key',
-  {},
-  () => {},
-  () => {}
-);
 
 export default function App() {
   /**
@@ -20,7 +12,7 @@ export default function App() {
    */
   const getProcessPaymentContext = async () => {
     var formTokenVersion = getFormTokenVersion();
-    return fetch(Config.merchantServerUrl + '/createPayment', {
+    return fetch(Config.merchantServerUrl + '/createPayment/INTE01_FRANCE', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
