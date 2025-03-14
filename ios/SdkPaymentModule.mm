@@ -1,12 +1,31 @@
 #import "SdkPaymentModule.h"
+#import "SdkPaymentModule-Swift.h"
 
-@implementation SdkPaymentModule
+@implementation SdkPaymentModule {
+  SdkPaymentModuleImpl *moduleImpl;
+}
+
+-(instancetype) init {
+  self = [super init];
+  if (self) {
+    moduleImpl = [SdkPaymentModuleImpl new];
+  }
+  
+  return self;
+}
+
 RCT_EXPORT_MODULE()
 
-- (NSNumber *)multiply:(double)a b:(double)b {
-    NSNumber *result = @(a * b);
+- (NSNumber *) getFormTokenVersion{
+  return [moduleImpl getFormTokenVersion];
+}
 
-    return result;
+-(void)initialize:(NSString *)publicKey options:(NSDictionary *)options onError:(RCTResponseSenderBlock)onError{
+  onError(@[@""]);
+}
+
+-(void)process:(NSString *)formToken options:(NSDictionary *)options onSuccess:(RCTResponseSenderBlock)onSuccess onError:(RCTResponseSenderBlock)onError{
+  onSuccess(@[@""]);
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
