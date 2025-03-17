@@ -21,11 +21,17 @@ RCT_EXPORT_MODULE()
 }
 
 -(void)initialize:(NSString *)publicKey options:(NSDictionary *)options onError:(RCTResponseSenderBlock)onError{
-  onError(@[@""]);
+  [moduleImpl initialize:publicKey options: options onError:^{
+    onError(@[@"errorFromInit"]);
+  }];
 }
 
 -(void)process:(NSString *)formToken options:(NSDictionary *)options onSuccess:(RCTResponseSenderBlock)onSuccess onError:(RCTResponseSenderBlock)onError{
-  onSuccess(@[@""]);
+  [moduleImpl processWithFormToken:formToken options:options onSuccess:^{
+    onSuccess(@[@"successReturned"]);
+  } onError:^{
+    onError(@[@"errorReturned"]);
+  }];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
