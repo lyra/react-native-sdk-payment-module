@@ -63,7 +63,6 @@ export default function App() {
         apiServerName: Config.apiServerName,
       },
       async (result) => {
-        console.log('=======> 1111111', result);
         // onError
         Alert.alert(result.error.errorMessage);
       }
@@ -72,29 +71,23 @@ export default function App() {
     // 2. Execute getProcessPaymentContext for get the formToken (required param in SDK process method)
     let formToken = await getProcessPaymentContext();
 
-    console.log('=======> formTOken retrieved', formToken);
-
     // 3. Call the PaymentSDK process method
     process(
       formToken!,
       {},
       async (result) => {
-        console.log('======> result', result);
         // onSuccess
         //4. Verify the payment using your server
         verifyPayment(result.response)
           .then(() => {
-            console.log('=======> 22222222222', result);
             Alert.alert('Payment success');
           })
           .catch(() => {
-            console.log('=======> 333333333 ', result);
             Alert.alert('Payment verification fail');
           });
       },
       async (result) => {
         // onError
-        console.log('=======> 4444444444', result);
         Alert.alert(result.error.errorMessage);
       }
     );
