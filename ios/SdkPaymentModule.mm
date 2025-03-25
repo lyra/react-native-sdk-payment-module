@@ -1,5 +1,7 @@
 #import "SdkPaymentModule.h"
 #import "SdkPaymentModule-Swift.h"
+#import <React/RCTUtils.h>
+
 
 @implementation SdkPaymentModule {
   SdkPaymentModuleImpl *moduleImpl;
@@ -20,18 +22,13 @@ RCT_EXPORT_MODULE()
   return [moduleImpl getFormTokenVersion];
 }
 
--(void)initialize:(NSString *)publicKey options:(NSDictionary *)options onError:(RCTResponseSenderBlock)onError{
-  [moduleImpl initialize:publicKey options: options onError:^{
-    onError(@[@"errorFromInit"]);
-  }];
+-(void)initialize:(NSString *)publicKey options:(NSDictionary *)configurationOptions onError:(RCTResponseSenderBlock)onErrorCallback{
+  [moduleImpl initialize:publicKey options: configurationOptions onError:onErrorCallback];
 }
 
--(void)process:(NSString *)formToken options:(NSDictionary *)options onSuccess:(RCTResponseSenderBlock)onSuccess onError:(RCTResponseSenderBlock)onError{
-  [moduleImpl processWithFormToken:formToken options:options onSuccess:^{
-    onSuccess(@[@"successReturned"]);
-  } onError:^{
-    onError(@[@"errorReturned"]);
-  }];
+-(void)process:(NSString *)formToken options:(NSDictionary *)configurationOptions onSuccess:(RCTResponseSenderBlock)onSuccessCallback onError:(RCTResponseSenderBlock)onErrorCallback{
+  UIViewController *presentedViewController = RCTPresentedViewController();
+  [moduleImpl processWithViewController:presentedViewController formToken:formToken options:configurationOptions onSuccess:onSuccessCallback onError:onErrorCallback];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
