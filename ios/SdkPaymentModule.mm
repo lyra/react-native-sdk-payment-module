@@ -22,13 +22,13 @@ RCT_EXPORT_MODULE()
   return [moduleImpl getFormTokenVersion];
 }
 
--(void)initialize:(NSString *)publicKey options:(NSDictionary *)configurationOptions onError:(RCTResponseSenderBlock)onErrorCallback{
-  [moduleImpl initialize:publicKey options: configurationOptions onError:onErrorCallback];
+- (void)initialize:(nonnull NSString *)publicKey options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl initialize:publicKey options:configurationOptions resolver:resolve rejecter:reject];
 }
 
--(void)process:(NSString *)formToken options:(NSDictionary *)configurationOptions onSuccess:(RCTResponseSenderBlock)onSuccessCallback onError:(RCTResponseSenderBlock)onErrorCallback{
+- (void)process:(nonnull NSString *)formToken options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   UIViewController *presentedViewController = RCTPresentedViewController();
-  [moduleImpl processWithViewController:presentedViewController formToken:formToken options:configurationOptions onSuccess:onSuccessCallback onError:onErrorCallback];
+  [moduleImpl processWithViewController:presentedViewController formToken:formToken options:configurationOptions resolver:resolve rejecter:reject];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
