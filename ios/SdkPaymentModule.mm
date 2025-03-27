@@ -4,13 +4,13 @@
 
 
 @implementation SdkPaymentModule {
-  SdkPaymentModuleImpl *moduleImpl;
+  LyraSdkPayment *lyraSdkPayment;
 }
 
 -(instancetype) init {
   self = [super init];
   if (self) {
-    moduleImpl = [SdkPaymentModuleImpl new];
+    lyraSdkPayment = [LyraSdkPayment new];
   }
   
   return self;
@@ -19,16 +19,16 @@
 RCT_EXPORT_MODULE()
 
 - (NSNumber *) getFormTokenVersion{
-  return [moduleImpl getFormTokenVersion];
+  return [lyraSdkPayment getFormTokenVersion];
 }
 
 - (void)initialize:(nonnull NSString *)publicKey options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl initialize:publicKey options:configurationOptions resolver:resolve rejecter:reject];
+  [lyraSdkPayment initialize:publicKey options:configurationOptions resolver:resolve rejecter:reject];
 }
 
 - (void)process:(nonnull NSString *)formToken options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   UIViewController *presentedViewController = RCTPresentedViewController();
-  [moduleImpl processWithViewController:presentedViewController formToken:formToken options:configurationOptions resolver:resolve rejecter:reject];
+  [lyraSdkPayment processWithViewController:presentedViewController formToken:formToken options:configurationOptions resolver:resolve rejecter:reject];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:

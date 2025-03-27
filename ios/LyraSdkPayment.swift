@@ -2,7 +2,7 @@ import Foundation
 import LyraPaymentSDK
 import React
 
-@objc public class SdkPaymentModuleImpl: NSObject {
+@objc public class LyraSdkPayment: NSObject {
   @objc public func getFormTokenVersion() -> NSNumber {
     return Lyra.getFormTokenVersion() as NSNumber
   }
