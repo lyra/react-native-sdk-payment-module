@@ -11,7 +11,7 @@
     "expo": "~52.0.41",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
-    "react-native": "0.76.7"
+    "react-native": "~0.77.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -19,5 +19,10 @@
     "expo-dev-client": "~5.0.15",
     "typescript": "^5.3.3"
   },
-  "private": true
+  "private": true,
+  "install": {
+    "exclude": [
+      "react-native@~0.76.7"
+    ]
+  }
 }
