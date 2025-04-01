@@ -1,97 +1,73 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native SDK payment example
 
-# Getting Started
+## Summary
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+The aim of this example is to explain how to integrate our Payment Mobile SDK into a React Native application.
 
-## Step 1: Start Metro
+## Table of contents
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- [Payment Mobile SDK integration example](#react-native-sdk-payment-example)
+  - [Summary](#summary)
+  - [Table of contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Getting started](#getting-started)
+    - [Execute this sample](#execute-this-sample)
+  - [Troubleshooting](#troubleshooting)
+  - [Copyright and license](#copyright-and-license)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Prerequisites
 
-```sh
-# Using npm
-npm start
+In order to be able to perform a successful payment with our Mobile SDK you must have:
 
-# OR using Yarn
-yarn start
-```
+- A contract with your Payment service provider
+- A deployed server capable to communicate with the payment platform, in order to verify data and create the payment session (please check out java server sample or the integration documentation for more information).
+- Your public key to initialize the SDK. This key can be found in the merchant back-office in Settings -> Shop -> API -> REST API Keys
+- Your REST API Server Name to initialize the SDK. This key can be found in the merchant back-office in Settings -> Shop -> API -> REST API Keys
 
-## Step 2: Build and run your app
+Attention: The sdk and its dependencies must be installed as dynamic
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## Documentation
 
-### Android
+Please check our documentation to understand how to integrate our SDK in your React Native application -> https://payzen.io/fr-FR/mobp/integration_guide/react_native/
 
-```sh
-# Using npm
-npm run android
+## Getting started
 
-# OR using Yarn
-yarn android
-```
+### Execute this sample
 
-### iOS
+1. Open the example under your IDE like Visual Studio Code.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+2. Edit the following fields in `Config.ts`
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+   - merchantServerUrl: replace by your merchant server Url.
+   - publicKey: replace with your public key that you can find in your back-office.
+   - apiServerName: replace with your REST API server name that you can find in your back-office.
 
-```sh
-bundle install
-```
+3. Run "yarn"
 
-Then, and every time you update your native dependencies, run:
+4. Run "yarn ios" or "yarn android" and that's all! :)
 
-```sh
-bundle exec pod install
-```
+## Troubleshooting
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Check official integration documentation in order to check all possible error codes.
 
-```sh
-# Using npm
-npm run ios
+## Copyright and license
 
-# OR using Yarn
-yarn ios
-```
+    The MIT License
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
