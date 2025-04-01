@@ -8,6 +8,9 @@ Documentation : https://payzen.io/fr-FR/mobp/integration_guide/react_native/
 
 Integration App Example : https://github.com/lyra/react-native-sdk-payment-example
 
+> [!IMPORTANT]
+> @lyracom/react-native-sdk-payment-module **requires react-native 0.75+**.
+
 ## Development workflow
 
 This project is a monorepo managed using [Yarn workspaces](https://yarnpkg.com/features/workspaces). It contains the following packages:
