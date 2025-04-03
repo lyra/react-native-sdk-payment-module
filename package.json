@@ -1,6 +1,6 @@
 {
   "name": "@lyracom/react-native-sdk-payment-module",
-  "version": "1.0.15",
+  "version": "1.0.18",
   "description": "React Native Sdk Payment Module",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
