@@ -31,8 +31,8 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
     try {
       lyraSDK!!.initialize(context.applicationContext, publicKey, options.toHashMap())
       promise.resolve(null)
-    } catch (lyraException: LyraException) {
-      promise.reject(lyraException)
+    } catch (lyraMobException: LyraMobException) {
+      promise.reject(lyraMobException)
     }
   }
 
