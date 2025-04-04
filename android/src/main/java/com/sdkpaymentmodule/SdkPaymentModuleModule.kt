@@ -2,13 +2,11 @@ package com.sdkpaymentmodule
 
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
+import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.bridge.WritableNativeMap
+import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.module.annotations.ReactModule
 import com.lyra.sdk.Lyra
 import com.lyra.sdk.callback.LyraHandler
 import com.lyra.sdk.callback.LyraResponse
@@ -17,92 +15,49 @@ import com.lyra.sdk.exception.LyraMobException
 import org.json.JSONException
 
 
-class SdkPaymentModuleModule(private val reactContext: ReactApplicationContext) :
-  ReactContextBaseJavaModule(reactContext) {
+@ReactModule(name = SdkPaymentModuleModule.NAME)
+class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
+  NativeSdkPaymentModuleSpec(reactContext) {
 
-  //Instance of Lyra Mobile SDK
-  private var SDK: Lyra? = Lyra
+  private var lyraSDK: Lyra? = Lyra
+  private var context: ReactApplicationContext = reactContext
 
-  override fun getName(): String {
-    return NAME
+  override fun getFormTokenVersion(): Double {
+    Log.d(name, "getFormTokenVersion")
+    return lyraSDK!!.getFormTokenVersion().toDouble()
   }
 
-  @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getFormTokenVersion(): Int {
-    Log.d(getName(), "getFormTokenVersion")
-    return SDK!!.getFormTokenVersion()
-  }
-
-  @ReactMethod
-  fun initialize(publicKey: String?, options: ReadableMap, onError: Callback) {
-    Log.d(getName(), "initialize")
-    try{
-      SDK!!.initialize(reactContext.getApplicationContext(), publicKey!!, options.toHashMap())
-    } catch(lyraMobException: LyraMobException){
-      var map: WritableMap = WritableNativeMap()
-        try {
-          val error: WritableMap = WritableNativeMap()
-          error.putString("detailErrorCode", lyraMobException.detailErrorCode)
-          error.putString("detailErrorMessage", lyraMobException.detailErrorMessage)
-          error.putString("errorCode", lyraMobException.errorCode)
-          error.putString("errorMessage", lyraMobException.errorMessage)
-          lyraMobException.technicalError?.let { error.putBoolean("technicalError", it) }
-          map.putMap("error", error)
-        } catch (ex: JSONException) {
-          Log.e(getName(), ex.message, ex)
-        }
-        onError.invoke(map)
+  override fun initialize(publicKey: String, options: ReadableMap, promise: Promise) {
+    try {
+      lyraSDK!!.initialize(context.applicationContext, publicKey, options.toHashMap())
+      promise.resolve(null)
+    } catch (lyraMobException: LyraMobException) {
+      promise.reject(lyraMobException)
     }
   }
 
-  @ReactMethod
-  fun process(formToken: String?, options: ReadableMap, onSuccess: Callback, onError: Callback) {
-    Log.d(getName(), "process")
+  override fun process(formToken: String, options: ReadableMap, promise: Promise) {
+    Log.d(name, "process")
     try{
-      SDK!!.process((reactContext.getCurrentActivity() as FragmentActivity).supportFragmentManager,
-        formToken!!, object : LyraHandler {
+      lyraSDK!!.process((context.currentActivity as FragmentActivity).supportFragmentManager,
+        formToken, object : LyraHandler {
           override fun onSuccess(lyraResponse: LyraResponse) {
             var map: WritableMap? = null
             try {
               map = Util.convertJsonToMap(lyraResponse)
+              promise.resolve(map)
             } catch (ex: JSONException) {
-              Log.e(getName(), ex.message, ex)
+              Log.e(name, ex.message, ex)
             }
-            onSuccess.invoke(map)
           }
 
           override fun onError(lyraException: LyraException, lyraResponse: LyraResponse?) {
-            var map: WritableMap? = null
-            try {
-              map = Util.convertJsonToMap(lyraResponse)
-              val error: WritableMap = WritableNativeMap()
-              error.putString("detailErrorCode", lyraException.detailErrorCode)
-              error.putString("detailErrorMessage", lyraException.detailErrorMessage)
-              error.putString("errorCode", lyraException.errorCode)
-              error.putString("errorMessage", lyraException.errorMessage)
-              lyraException.technicalError?.let { error.putBoolean("technicalError", it) }
-              map?.putMap("error", error)
-            } catch (ex: JSONException) {
-              Log.e(getName(), ex.message, ex)
-            }
-            onError.invoke(map)
+            promise.reject(lyraException)
           }
         }, options.toHashMap()
       )
     } catch(lyraMobException: LyraMobException){
-      var map: WritableMap = WritableNativeMap()
-        try {
-          val error: WritableMap = WritableNativeMap()
-          error.putString("detailErrorCode", lyraMobException.detailErrorCode)
-          error.putString("detailErrorMessage", lyraMobException.detailErrorMessage)
-          error.putString("errorCode", lyraMobException.errorCode)
-          error.putString("errorMessage", lyraMobException.errorMessage)
-          lyraMobException.technicalError?.let { error.putBoolean("technicalError", it) }
-          map.putMap("error", error)
-        } catch (ex: JSONException) {
-          Log.e(getName(), ex.message, ex)
-        }
-        onError.invoke(map)
+      promise.reject(lyraMobException)
     }
   }
 
