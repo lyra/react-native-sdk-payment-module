@@ -13,42 +13,54 @@ RCT_EXTERN_METHOD(initialize:(NSString*)publicKey options:(NSDictionary*)options
   return NO;
 }
 
-RCT_EXPORT_METHOD(process: (NSString*) formToken options:(NSDictionary*) configurationOptions onSuccess:(RCTResponseSenderBlock) onSuccessCallback onError:(RCTResponseSenderBlock) onErrorCallback)
+RCT_EXPORT_METHOD(process: (NSString*) formToken
+                  options:(NSDictionary*) configurationOptions
+                  onSuccess:(RCTResponseSenderBlock) onSuccessCallback
+                  onError:(RCTResponseSenderBlock) onErrorCallback)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"process");
         UIViewController *vc = [UIApplication sharedApplication].delegate.window.rootViewController;
 
+        __block BOOL callbackInvoked = NO;
+
         NSError *error = nil;
-        [Lyra process:vc :formToken onSuccess:^(LyraResponse *lyraResponse) {
-            // Convert lyraResponse to JSON and return it
-            NSError *errorJSON = nil;
-            NSMutableDictionary *result = [NSJSONSerialization JSONObjectWithData:lyraResponse.getResponseData options:kNilOptions error:&errorJSON];
+        [Lyra process:vc :formToken
+            onSuccess:^(LyraResponse *lyraResponse) {
+                if (callbackInvoked) return;
+                callbackInvoked = YES;
 
-            onSuccessCallback(@[result]);
-        } onError:^(LyraError *lyraError, LyraResponse *lyraResponse) {
-            // Convert lyraResponse to JSON
-            // Complete with lyraError --> {err:...}
-            // Return it
-            NSError *errorJSON = nil;
-            NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
-            if (lyraResponse != nil) {
-                result = [NSJSONSerialization JSONObjectWithData:lyraResponse.getResponseData options:NSJSONReadingMutableContainers error:&errorJSON];
+                NSError *errorJSON = nil;
+                NSMutableDictionary *result = [NSJSONSerialization JSONObjectWithData:lyraResponse.getResponseData options:kNilOptions error:&errorJSON];
+                onSuccessCallback(@[result]);
             }
+            onError:^(LyraError *lyraError, LyraResponse *lyraResponse) {
+                if (callbackInvoked) return;
+                callbackInvoked = YES;
 
-            NSMutableDictionary *dictErr = [[NSMutableDictionary alloc] init];
-            if(lyraError != nil) {
-                dictErr[@"detailErrorCode"] = lyraError.detailErrorCode;
-                dictErr[@"detailErrorMessage"] = lyraError.detailErrorMessage;
-                dictErr[@"errorCode"] = lyraError.errorCode;
-                dictErr[@"errorMessage"] = lyraError.errorMessage;
-                dictErr[@"technicalError"] = @"true"; //lyraError.isTechnicalError ;
+                NSError *errorJSON = nil;
+                NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+                if (lyraResponse != nil) {
+                    result = [NSJSONSerialization JSONObjectWithData:lyraResponse.getResponseData options:NSJSONReadingMutableContainers error:&errorJSON];
+                }
+
+                NSMutableDictionary *dictErr = [[NSMutableDictionary alloc] init];
+                if (lyraError != nil) {
+                    dictErr[@"detailErrorCode"] = lyraError.detailErrorCode;
+                    dictErr[@"detailErrorMessage"] = lyraError.detailErrorMessage;
+                    dictErr[@"errorCode"] = lyraError.errorCode;
+                    dictErr[@"errorMessage"] = lyraError.errorMessage;
+                    dictErr[@"technicalError"] = @"true";
+                }
+                [result setObject:dictErr forKey:@"error"];
+                onErrorCallback(@[result]);
             }
-            [result setObject:dictErr forKey:@"error"];
-            onErrorCallback(@[result]);
-        } :configurationOptions error:&error];
+            :configurationOptions error:&error];
+
         if (error != nil) {
-            // Return {err:...}
+            if (callbackInvoked) return;
+            callbackInvoked = YES;
+
             NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
             NSMutableDictionary *dictErr = [[NSMutableDictionary alloc] init];
             dictErr[@"errorCode"] = @"MOB_002";
