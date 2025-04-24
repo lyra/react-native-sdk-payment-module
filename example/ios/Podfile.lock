@@ -12,12 +12,12 @@ PODS:
   - LyraMaterial (1.0.6):
     - LyraMotion
   - LyraMotion (4.0.2)
-  - LyraPaymentSDK (2.8.0):
+  - LyraPaymentSDK (2.8.1):
     - LyraMaterial (~> 1.0.6)
     - LyraMotion (~> 4.0.2)
-    - LyraPaymentSDK/AdditionalSDK (= 2.8.0)
+    - LyraPaymentSDK/AdditionalSDK (= 2.8.1)
     - SnapKit (~> 5.7.1)
-  - LyraPaymentSDK/AdditionalSDK (2.8.0):
+  - LyraPaymentSDK/AdditionalSDK (2.8.1):
     - LyraCardsRecognizer
     - LyraMaterial (~> 1.0.6)
     - LyraMotion (~> 4.0.2)
@@ -1539,7 +1539,7 @@ PODS:
     - React-logger (= 0.78.0)
     - React-perflogger (= 0.78.0)
     - React-utils (= 0.78.0)
-  - SdkPaymentModule (1.0.15):
+  - SdkPaymentModule (2.0.60):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1793,8 +1793,8 @@ SPEC CHECKSUMS:
   LyraCardsRecognizer: df5ce5d154fb8ef843cd4ed66a29bb3b5a93526a
   LyraMaterial: d9cbb012b57547b5ff4576c7246af7e80623d4e6
   LyraMotion: e3f502695b475f938c0755ac7731300beb4e8aa2
-  LyraPaymentSDK: 1dd0d860462e031a51a77a17e31b2c399129cd7f
-  RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
+  LyraPaymentSDK: a3de1d4cb0953cb699b7930ab8e6712e5bf8ba5d
+  RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: b2eecf2d60216df56bc5e6be5f063826d3c1ee35
   RCTRequired: 78522de7dc73b81f3ed7890d145fa341f5bb32ea
   RCTTypeSafety: c135dd2bf50402d87fd12884cbad5d5e64850edd
@@ -1852,11 +1852,11 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: f2e81d80afd71a8058589e19d8a134243fa53f17
   ReactCodegen: a63a0ab6ae824aef2e8c744981edd718b16eb9f2
   ReactCommon: 3d39389f8e2a2157d5c999f8fba57bd1c8f226f0
-  SdkPaymentModule: 168adeff4d2eb4b9d5673ce447d16d70ba505be9
+  SdkPaymentModule: eef7d14d669a3caf052396986b263493e756609f
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Yoga: afd04ff05ebe0121a00c468a8a3c8080221cb14c
+  Yoga: 9b7fb56e7b08cde60e2153344fa6afbd88e5d99f
 
 PODFILE CHECKSUM: d274f01c5109d2ccc338951eff4a394876b0c9d7
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2
