@@ -14,8 +14,7 @@ export function process(formToken: string, options: Object): Promise<any> {
 }
 
 export const InitializeOptions = {
-  apiServerName: 'apiServerName',
-  theme: Platform.OS === 'android' ? 'themeResId' : 'themeFileName',
+  apiServerName: 'apiServerName', // Mandatory
   applePayMerchantId: Platform.OS === 'android' ? '' : 'applePayMerchantId', // iOS only
   applePayMerchantName: Platform.OS === 'android' ? '' : 'applePayMerchantName', // iOS only
 };
