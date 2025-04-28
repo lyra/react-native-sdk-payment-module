@@ -1,34 +1,47 @@
 #import "SdkPaymentModule.h"
-#import "SdkPaymentModule-Swift.h"
+#import <LyraPaymentSDK/LyraPaymentSDK-Swift.h>
 #import <React/RCTUtils.h>
 
-
-@implementation SdkPaymentModule {
-  LyraSdkPayment *lyraSdkPayment;
-}
-
--(instancetype) init {
-  self = [super init];
-  if (self) {
-    lyraSdkPayment = [LyraSdkPayment new];
-  }
-  
-  return self;
-}
+@implementation SdkPaymentModule 
 
 RCT_EXPORT_MODULE()
 
 - (NSNumber *) getFormTokenVersion{
-  return [lyraSdkPayment getFormTokenVersion];
+  return [NSNumber numberWithInteger:[Lyra getFormTokenVersion]];
 }
 
 - (void)initialize:(nonnull NSString *)publicKey options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [lyraSdkPayment initialize:publicKey options:configurationOptions resolver:resolve rejecter:reject];
+  NSError *error = nil;
+  
+  [Lyra initialize:publicKey :configurationOptions error:&error];
+  
+  if (error != nil) {
+    reject(@"MOB_001", @"SDK initialization failed.", error);
+  } else {
+    resolve(@[]);
+  }
 }
 
 - (void)process:(nonnull NSString *)formToken options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   UIViewController *presentedViewController = RCTPresentedViewController();
-  [lyraSdkPayment processWithViewController:presentedViewController formToken:formToken options:configurationOptions resolver:resolve rejecter:reject];
+  NSError *error = nil;
+  
+  [Lyra process:presentedViewController :formToken
+    onSuccess:^(LyraResponse *lyraResponse) {
+        NSError *errorJSON = nil;
+        NSMutableDictionary *result = [NSJSONSerialization JSONObjectWithData:lyraResponse.getResponseData options:kNilOptions error:&errorJSON];
+        resolve(@[result]);
+    }
+    onError:^(LyraError *lyraError, LyraResponse *lyraResponse) {
+        reject(lyraError.errorCode, lyraError.errorMessage, nil);
+        return;
+    }
+    :configurationOptions error:&error];
+
+    if (error != nil) {
+        reject(@"MOB_002", @"SDK initialization is required before calling process", error);
+    }
+  
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
