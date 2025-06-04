@@ -67,7 +67,7 @@ export default function App() {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: paymentResult,
+      body: JSON.stringify(paymentResult),
     });
   };
 
@@ -87,8 +87,13 @@ export default function App() {
       });
 
       //4. Verify the payment using your server
-      verifyPayment(result.response)
-        .then(() => {
+      verifyPayment(result)
+        .then((response) => {
+          if (response.status !== 200) {
+            Alert.alert('Payment verification request failed');
+            return;
+          }
+
           Alert.alert('Payment success');
         })
         .catch(() => {
