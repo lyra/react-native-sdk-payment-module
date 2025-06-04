@@ -30,7 +30,7 @@ RCT_EXPORT_MODULE()
     onSuccess:^(LyraResponse *lyraResponse) {
         NSError *errorJSON = nil;
         NSMutableDictionary *result = [NSJSONSerialization JSONObjectWithData:lyraResponse.getResponseData options:kNilOptions error:&errorJSON];
-        resolve(@[result]);
+        resolve(result);
     }
     onError:^(LyraError *lyraError, LyraResponse *lyraResponse) {
         reject(lyraError.errorCode, lyraError.errorMessage, nil);
