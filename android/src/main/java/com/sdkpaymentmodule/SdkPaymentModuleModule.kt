@@ -61,6 +61,10 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
     }
   }
 
+  override fun cancelProcess() {
+    lyraSDK!!.cancelProcess()
+  }
+
   companion object {
     const val NAME = "SdkPaymentModule"
   }

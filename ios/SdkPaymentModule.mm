@@ -44,6 +44,10 @@ RCT_EXPORT_MODULE()
   
 }
 
+- (void)cancelProcess{
+  [Lyra cancelProcess];
+}
+
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {
