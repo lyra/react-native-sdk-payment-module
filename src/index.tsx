@@ -17,6 +17,7 @@ export const InitializeOptions = {
   apiServerName: 'apiServerName', // Mandatory
   applePayMerchantId: Platform.OS === 'android' ? '' : 'applePayMerchantId', // iOS only
   applePayMerchantName: Platform.OS === 'android' ? '' : 'applePayMerchantName', // iOS only
+  nfcEnabled: Platform.OS === 'android' ? 'nfcEnabled' : '', // Android only
 };
 
 export const ProcessOptions = {
