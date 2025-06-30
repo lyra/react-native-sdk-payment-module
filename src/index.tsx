@@ -13,6 +13,10 @@ export function process(formToken: string, options: Object): Promise<any> {
   return SdkPaymentModule.process(formToken, options);
 }
 
+export function cancelProcess() {
+  return SdkPaymentModule.cancelProcess();
+}
+
 export const InitializeOptions = {
   apiServerName: 'apiServerName', // Mandatory
   applePayMerchantId: Platform.OS === 'android' ? '' : 'applePayMerchantId', // iOS only
