@@ -3,8 +3,6 @@ import {
   initialize,
   getFormTokenVersion,
   process,
-  InitializeOptions,
-  ProcessOptions,
 } from '@lyracom/react-native-sdk-payment-module';
 import Config from './Config';
 import { useCallback } from 'react';
@@ -75,7 +73,7 @@ export default function App() {
     try {
       // 1.Initialize Payment SDK
       await initialize(Config.publicKey, {
-        [InitializeOptions.apiServerName]: Config.apiServerName,
+        apiServerName: Config.apiServerName,
       });
 
       // 2. Execute getProcessPaymentContext for get the formToken (required param in SDK process method)
@@ -83,7 +81,7 @@ export default function App() {
 
       // // 3. Call the PaymentSDK process method
       const result = await process(formToken!, {
-        [ProcessOptions.customHeaderLabel]: 'Custom header',
+        customHeaderLabel: 'Custom header',
       });
 
       //4. Verify the payment using your server
