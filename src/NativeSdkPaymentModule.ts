@@ -7,6 +7,7 @@ export interface Spec extends TurboModule {
   initialize(publicKey: string, options: Object): Promise<void>;
   process(formToken: string, options: Object): Promise<void>;
   cancelProcess(): void;
+  sdkVersion(): string;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('SdkPaymentModule');

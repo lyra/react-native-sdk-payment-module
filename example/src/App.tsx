@@ -3,9 +3,10 @@ import {
   initialize,
   getFormTokenVersion,
   process,
+  sdkVersion,
 } from '@lyracom/react-native-sdk-payment-module';
 import Config from './Config';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,6 +27,8 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
+  const [mySdkVersion, setMySdkVersion] = useState<string>('');
+
   /**
    * Uses this function for get the formToken (required param in SDK process method)
    */
@@ -69,13 +72,21 @@ export default function App() {
     });
   };
 
+  useEffect(() => {
+    // 1. Initialiser le SDK au lancement de l'app
+    initialize(Config.publicKey, {
+      apiServerName: Config.apiServerName,
+    })
+      .then(() => {
+        setMySdkVersion(sdkVersion());
+      })
+      .catch((e) => {
+        Alert.alert("Erreur d'initialisation SDK", '' + e);
+      });
+  }, []);
+
   const handlePay = useCallback(async () => {
     try {
-      // 1.Initialize Payment SDK
-      await initialize(Config.publicKey, {
-        apiServerName: Config.apiServerName,
-      });
-
       // 2. Execute getProcessPaymentContext for get the formToken (required param in SDK process method)
       let formToken = await getProcessPaymentContext();
 
@@ -107,6 +118,8 @@ export default function App() {
       <Pressable style={styles.button} onPress={handlePay}>
         <Text style={styles.buttonLabel}>Pay</Text>
       </Pressable>
+      <View style={{ height: 20 }}></View>
+      <Text style={styles.buttonLabel}>SdkVersion : {mySdkVersion}</Text>
     </View>
   );
 }
