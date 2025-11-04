@@ -6,8 +6,12 @@
 
 RCT_EXPORT_MODULE()
 
-- (NSNumber *) getFormTokenVersion{
+- (NSNumber *)getFormTokenVersion{
   return [NSNumber numberWithInteger:[Lyra getFormTokenVersion]];
+}
+
+- (NSString *)getSdkVersion{
+  return [Lyra getSDKVersion];
 }
 
 - (void)initialize:(nonnull NSString *)publicKey options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {

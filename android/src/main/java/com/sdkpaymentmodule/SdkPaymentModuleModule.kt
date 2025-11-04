@@ -27,8 +27,8 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
     return lyraSDK!!.getFormTokenVersion().toDouble()
   }
 
-  override fun sdkVersion(): String {
-    // Retourne la version du SDK, adapte selon ton besoin
+  override fun getSdkVersion(): String {
+    Log.d(name, "getSdkVersion")
     return lyraSDK!!.sdkVersion
   }
 

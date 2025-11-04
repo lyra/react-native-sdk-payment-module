@@ -1,15 +1,25 @@
-import { Text, View, StyleSheet, Pressable, Alert } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Pressable,
+  Alert,
+  SafeAreaView,
+} from 'react-native';
 import {
   initialize,
   getFormTokenVersion,
   process,
-  sdkVersion,
+  getSdkVersion,
 } from '@lyracom/react-native-sdk-payment-module';
 import Config from './Config';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  body: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -24,11 +34,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
   },
+  sdkVersionLabel: {
+    color: 'grey',
+    fontSize: 12,
+    textAlign: 'center',
+  },
 });
 
 export default function App() {
-  const [mySdkVersion, setMySdkVersion] = useState<string>('');
-
   /**
    * Uses this function for get the formToken (required param in SDK process method)
    */
@@ -72,21 +85,13 @@ export default function App() {
     });
   };
 
-  useEffect(() => {
-    // 1. Initialiser le SDK au lancement de l'app
-    initialize(Config.publicKey, {
-      apiServerName: Config.apiServerName,
-    })
-      .then(() => {
-        setMySdkVersion(sdkVersion());
-      })
-      .catch((e) => {
-        Alert.alert("Erreur d'initialisation SDK", '' + e);
-      });
-  }, []);
-
   const handlePay = useCallback(async () => {
     try {
+      // 1.Initialize Payment SDK
+      await initialize(Config.publicKey, {
+        apiServerName: Config.apiServerName,
+      });
+
       // 2. Execute getProcessPaymentContext for get the formToken (required param in SDK process method)
       let formToken = await getProcessPaymentContext();
 
@@ -114,12 +119,13 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Pressable style={styles.button} onPress={handlePay}>
-        <Text style={styles.buttonLabel}>Pay</Text>
-      </Pressable>
-      <View style={{ height: 20 }}></View>
-      <Text style={styles.buttonLabel}>SdkVersion : {mySdkVersion}</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.body}>
+        <Pressable style={styles.button} onPress={handlePay}>
+          <Text style={styles.buttonLabel}>Pay</Text>
+        </Pressable>
+      </View>
+      <Text style={styles.sdkVersionLabel}>SdkVersion : {getSdkVersion()}</Text>
+    </SafeAreaView>
   );
 }

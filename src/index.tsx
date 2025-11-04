@@ -25,8 +25,8 @@ interface ProcessOptions {
 export function getFormTokenVersion(): number {
   return SdkPaymentModule.getFormTokenVersion();
 }
-export function sdkVersion(): string {
-  return SdkPaymentModule.sdkVersion();
+export function getSdkVersion(): string {
+  return SdkPaymentModule.getSdkVersion();
 }
 
 export function initialize(
