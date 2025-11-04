@@ -28,7 +28,6 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
   }
 
   override fun sdkVersion(): String {
-    // Retourne la version du SDK, adapte selon ton besoin
     return lyraSDK!!.sdkVersion
   }
 
