@@ -3,7 +3,7 @@
   "version": "3.1.0",
   "description": "React Native Sdk Payment Module",
   "source": "./src/index.tsx",
-  "main": "./lib/commonjs/index.js",
+  "main": "./lib/module/index.js",
   "module": "./lib/module/index.js",
   "types": "./lib/typescript/module/src/index.d.ts",
   "exports": {
