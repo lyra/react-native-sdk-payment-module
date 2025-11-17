@@ -29,7 +29,7 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
 
   override fun getSdkVersion(): String {
     Log.d(name, "getSdkVersion")
-    return lyraSDK!!.sdkVersion
+    return lyraSDK!!.getSDKVersion()
   }
 
   override fun initialize(publicKey: String, options: ReadableMap, promise: Promise) {
