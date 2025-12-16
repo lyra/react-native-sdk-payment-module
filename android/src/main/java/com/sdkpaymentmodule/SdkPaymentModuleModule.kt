@@ -32,12 +32,6 @@ class SdkPaymentModuleModule(reactContext: ReactApplicationContext) :
     return lyraSDK!!.getSDKVersion()
   }
 
-  @Deprecated("Will be removed in future version, use getSDKVersion() instead", ReplaceWith("getSDKVersion()"))
-  override fun getSdkVersion(): String {
-    Log.d(name, "getSdkVersion")
-    return lyraSDK!!.getSDKVersion()
-  }
-
   override fun initialize(publicKey: String, options: ReadableMap, promise: Promise) {
     try {
       lyraSDK!!.initialize(context.applicationContext, publicKey, options.toHashMap())
