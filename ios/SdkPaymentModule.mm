@@ -10,7 +10,7 @@ RCT_EXPORT_MODULE()
   return [NSNumber numberWithInteger:[Lyra getFormTokenVersion]];
 }
 
-- (NSString *)getSdkVersion{
+- (NSString *)getSDKVersion{
   return [Lyra getSDKVersion];
 }
 

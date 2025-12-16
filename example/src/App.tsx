@@ -10,7 +10,7 @@ import {
   initialize,
   getFormTokenVersion,
   process,
-  getSdkVersion,
+  getSDKVersion,
 } from '@lyracom/react-native-sdk-payment-module';
 import Config from './Config';
 import { useCallback } from 'react';
@@ -125,7 +125,7 @@ export default function App() {
           <Text style={styles.buttonLabel}>Pay</Text>
         </Pressable>
       </View>
-      <Text style={styles.sdkVersionLabel}>SdkVersion : {getSdkVersion()}</Text>
+      <Text style={styles.sdkVersionLabel}>SdkVersion : {getSDKVersion()}</Text>
     </SafeAreaView>
   );
 }
