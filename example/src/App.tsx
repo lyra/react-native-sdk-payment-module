@@ -13,7 +13,7 @@ import {
   getSDKVersion,
 } from '@lyracom/react-native-sdk-payment-module';
 import Config from './Config';
-import { useCallback } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +42,17 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
+  useLayoutEffect(() => {
+    try {
+      // 1.Initialize Payment SDK
+      initialize(Config.publicKey, {
+        apiServerName: Config.apiServerName,
+      });
+    } catch (e) {
+      Alert.alert('Error', '' + e);
+    }
+  }, []);
+
   /**
    * Uses this function for get the formToken (required param in SDK process method)
    */
@@ -87,11 +98,6 @@ export default function App() {
 
   const handlePay = useCallback(async () => {
     try {
-      // 1.Initialize Payment SDK
-      await initialize(Config.publicKey, {
-        apiServerName: Config.apiServerName,
-      });
-
       // 2. Execute getProcessPaymentContext for get the formToken (required param in SDK process method)
       let formToken = await getProcessPaymentContext();
 
