@@ -13,7 +13,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.tmejane.expoExample"
+      "bundleIdentifier": "com.expoExample"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +23,7 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.tmejane.expoExample"
+      "package": "com.expoExample"
     },
     "plugins": [
       ["./plugins/withLyraPaymentSDK"],
