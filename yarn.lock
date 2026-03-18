@@ -2978,9 +2978,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lyracom/react-native-sdk-payment-module-example@workspace:example":
+"@lyracom/react-native-sdk-payment-module-example@workspace:apps/example":
   version: 0.0.0-use.local
-  resolution: "@lyracom/react-native-sdk-payment-module-example@workspace:example"
+  resolution: "@lyracom/react-native-sdk-payment-module-example@workspace:apps/example"
   dependencies:
     "@babel/core": "npm:^7.25.2"
     "@babel/preset-env": "npm:^7.25.3"

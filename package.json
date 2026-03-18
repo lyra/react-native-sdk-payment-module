@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "example": "yarn workspace @lyracom/react-native-sdk-payment-module-example",
-    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "clean": "del-cli android/build apps/example/android/build apps/example/android/app/build apps/example/ios/build lib",
     "prepare": "bob build",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -88,7 +88,7 @@
     "react-native": "*"
   },
   "workspaces": [
-    "example",
+    "apps/example",
     "expoExample"
   ],
   "packageManager": "yarn@4.11.0",
@@ -128,7 +128,7 @@
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
+      "<rootDir>/apps/example/node_modules",
       "<rootDir>/expoExample/node_modules",
       "<rootDir>/lib/"
     ]
