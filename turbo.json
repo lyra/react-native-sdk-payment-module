@@ -16,11 +16,11 @@
         "!apps/example/android/.gradle",
         "!apps/example/android/build",
         "!apps/example/android/app/build",
-        "expoExample/package.json",
-        "expoExample/android",
-        "!expoExample/android/.gradle",
-        "!expoExample/android/build",
-        "!expoExample/android/app/build"
+        "apps/expoExample/package.json",
+        "apps/expoExample/android",
+        "!apps/expoExample/android/.gradle",
+        "!apps/expoExample/android/build",
+        "!apps/expoExample/android/app/build"
       ],
       "outputs": []
     },
@@ -41,10 +41,10 @@
         "apps/example/ios",
         "!apps/example/ios/build",
         "!apps/example/ios/Pods",
-        "expoExample/package.json",
-        "expoExample/ios",
-        "!expoExample/ios/build",
-        "!expoExample/ios/Pods"
+        "apps/expoExample/package.json",
+        "apps/expoExample/ios",
+        "!apps/expoExample/ios/build",
+        "!apps/expoExample/ios/Pods"
       ],
       "outputs": []
     }

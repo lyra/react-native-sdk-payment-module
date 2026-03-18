@@ -89,7 +89,7 @@
   },
   "workspaces": [
     "apps/example",
-    "expoExample"
+    "apps/expoExample"
   ],
   "packageManager": "yarn@4.11.0",
   "react-native-builder-bob": {
@@ -129,7 +129,7 @@
     "preset": "react-native",
     "modulePathIgnorePatterns": [
       "<rootDir>/apps/example/node_modules",
-      "<rootDir>/expoExample/node_modules",
+      "<rootDir>/apps/expoExample/node_modules",
       "<rootDir>/lib/"
     ]
   },

@@ -7044,9 +7044,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expoexample@workspace:expoExample":
+"expoexample@workspace:apps/expoExample":
   version: 0.0.0-use.local
-  resolution: "expoexample@workspace:expoExample"
+  resolution: "expoexample@workspace:apps/expoExample"
   dependencies:
     "@types/react": "npm:~19.2.2"
     expo: "npm:~55.0.6"
