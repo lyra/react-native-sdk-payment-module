@@ -88,7 +88,8 @@
     "react-native": "*"
   },
   "workspaces": [
-    "example"
+    "example",
+    "expoExample"
   ],
   "packageManager": "yarn@4.11.0",
   "react-native-builder-bob": {
