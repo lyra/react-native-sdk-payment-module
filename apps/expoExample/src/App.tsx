@@ -41,6 +41,7 @@ export default function App() {
       // 1.Initialize Payment SDK
       initialize(Config.publicKey, {
         apiServerName: Config.apiServerName,
+        // cardScanningEnabled: true,
       });
     } catch (e) {
       Alert.alert('Error', '' + e);

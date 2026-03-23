@@ -13,7 +13,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.expoExample"
+      "bundleIdentifier": "com.expoExample",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan cards."
+      }
     },
     "android": {
       "adaptiveIcon": {
