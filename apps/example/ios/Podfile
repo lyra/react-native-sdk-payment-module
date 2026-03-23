@@ -19,6 +19,9 @@ end
 target 'ReactNativeSdkPaymentModuleExample' do
   config = use_native_modules!
 
+  # Used to scan card
+  pod 'LyraCardsRecognizer'
+
   dynamic_frameworks = ['LyraPaymentSDK', 'LyraMotion', 'LyraMaterial', 'SnapKit']
 
   use_react_native!(
