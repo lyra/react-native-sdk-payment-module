@@ -5,7 +5,7 @@ import {
   process,
   getSDKVersion,
 } from '@lyracom/react-native-sdk-payment-module';
-import Config from './Config';
+import Config from '../../Config';
 import { useCallback, useLayoutEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -54,24 +54,29 @@ export default function App() {
   const getProcessPaymentContext = async () => {
     var formTokenVersion = getFormTokenVersion();
 
-    const result = await fetch(Config.merchantServerUrl + '/createPayment', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        amount: Config.amount,
-        mode: Config.paymentMode,
-        customer: {
-          email: Config.email,
-          reference: Config.customerReference,
+    const result = await fetch(
+      Config.merchantServerUrl +
+        '/createPayment' +
+        Config.merchantServerUrlSuffix,
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
         },
-        currency: Config.currency,
-        orderId: Config.orderId,
-        formTokenVersion: formTokenVersion,
-      }),
-    });
+        body: JSON.stringify({
+          amount: Config.amount,
+          mode: Config.paymentMode,
+          customer: {
+            email: Config.email,
+            reference: Config.customerReference,
+          },
+          currency: Config.currency,
+          orderId: Config.orderId,
+          formTokenVersion: formTokenVersion,
+        }),
+      }
+    );
     const json = await result.json();
     return json.answer.formToken;
   };
@@ -81,14 +86,19 @@ export default function App() {
    * @param {*} paymentResult  The result of SDK process method
    */
   const verifyPayment = async (paymentResult: any) => {
-    return fetch(Config.merchantServerUrl + '/verifyResult', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(paymentResult),
-    });
+    return fetch(
+      Config.merchantServerUrl +
+        '/verifyResult' +
+        Config.merchantServerUrlSuffix,
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentResult),
+      }
+    );
   };
 
   const handlePay = useCallback(async () => {

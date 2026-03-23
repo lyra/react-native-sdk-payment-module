@@ -7,6 +7,7 @@ export default {
 
   // FIXME: change by the right merchant payment server url
   merchantServerUrl: '<REPLACE_ME>',
+  merchantServerUrlSuffix: '',
 
   //Customer Informations
   // Change by the desired parameters if necessary
