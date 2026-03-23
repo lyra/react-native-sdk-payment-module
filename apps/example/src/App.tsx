@@ -42,6 +42,7 @@ export default function App() {
       initialize(Config.publicKey, {
         apiServerName: Config.apiServerName,
         // cardScanningEnabled: true,
+        // nfcEnabled: true,
       });
     } catch (e) {
       Alert.alert('Error', '' + e);
