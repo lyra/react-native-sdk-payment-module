@@ -53,6 +53,7 @@ target 'ReactNativeSdkPaymentModuleExample' do
       # :ccache_enabled => true
     )
 
+    # TODO To remove once React Native have been updated
     # Workaround for pod fmt in Xcode 26.4 until RN updates fmt dependency to >= 12.1.0
     fmt_file = installer.sandbox.pod_dir('fmt').join('include/fmt/format-inl.h')
     if File.exist?(fmt_file)
