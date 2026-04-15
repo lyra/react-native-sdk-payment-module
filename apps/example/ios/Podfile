@@ -52,18 +52,5 @@ target 'ReactNativeSdkPaymentModuleExample' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
-
-    # TODO To remove once React Native have been updated
-    # Workaround for pod fmt in Xcode 26.4 until RN updates fmt dependency to >= 12.1.0
-    fmt_file = installer.sandbox.pod_dir('fmt').join('include/fmt/format-inl.h')
-    if File.exist?(fmt_file)
-      content = File.read(fmt_file)
-      # Remplace tous les FMT_STRING("...") par juste "..."
-      patched = content.gsub(/FMT_STRING\(("(?:[^"\\]|\\.)*")\)/, '\1')
-      File.write(fmt_file, patched)
-      puts "✅ fmt format-inl.h fully patched for Xcode 26.4 compatibility - TO REMOVE ASAP"
-    else
-      puts "⚠️  fmt format-inl.h not found, skipping patch"
-    end
   end
 end
