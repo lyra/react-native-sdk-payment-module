@@ -1,4 +1,4 @@
-import SdkPaymentModule from './NativeSdkPaymentModule';
+import ReactNativeSdkPaymentModule from './NativeReactNativeSdkPaymentModule';
 
 interface InitializeOptions {
   apiServerName: String;
@@ -23,32 +23,32 @@ interface ProcessOptions {
 }
 
 export function getFormTokenVersion(): number {
-  return SdkPaymentModule.getFormTokenVersion();
+  return ReactNativeSdkPaymentModule.getFormTokenVersion();
 }
 
 /** @deprecated replace with getSDKVersion */
 export function getSdkVersion(): string {
-  return SdkPaymentModule.getSDKVersion();
+  return ReactNativeSdkPaymentModule.getSDKVersion();
 }
 
 export function getSDKVersion(): string {
-  return SdkPaymentModule.getSDKVersion();
+  return ReactNativeSdkPaymentModule.getSDKVersion();
 }
 
 export function initialize(
   publicKey: string,
   options: InitializeOptions
 ): Promise<void> {
-  return SdkPaymentModule.initialize(publicKey, options);
+  return ReactNativeSdkPaymentModule.initialize(publicKey, options);
 }
 
 export function process(
   formToken: string,
   options: ProcessOptions
 ): Promise<any> {
-  return SdkPaymentModule.process(formToken, options);
+  return ReactNativeSdkPaymentModule.process(formToken, options);
 }
 
 export function cancelProcess() {
-  return SdkPaymentModule.cancelProcess();
+  return ReactNativeSdkPaymentModule.cancelProcess();
 }
