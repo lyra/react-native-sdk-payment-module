@@ -5,19 +5,24 @@ import androidx.fragment.app.FragmentActivity
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.WritableMap
 import com.lyra.sdk.Lyra
-import com.lyra.sdk.callback.LyraHandler
-import com.lyra.sdk.callback.LyraResponse
 import com.lyra.sdk.exception.LyraException
 import com.lyra.sdk.exception.LyraMobException
+import com.lyracom.reactnativesdkpaymentmodule.extensions.toInitOptions
+import com.lyracom.reactnativesdkpaymentmodule.extensions.toProcessOptions
+import com.lyracom.reactnativesdkpaymentmodule.extensions.toWritableMap
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import org.json.JSONException
 
-class ReactNativeSdkPaymentModuleModule(reactContext: ReactApplicationContext) :
-  NativeReactNativeSdkPaymentModuleSpec(reactContext) {
-
-private var lyraSDK: Lyra? = Lyra
+class ReactNativeSdkPaymentModuleModule(
+  reactContext: ReactApplicationContext,
+) : NativeReactNativeSdkPaymentModuleSpec(reactContext) {
+  private var lyraSDK: Lyra? = Lyra
   private var context: ReactApplicationContext = reactContext
+  private val moduleScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
   override fun getFormTokenVersion(): Double {
     Log.d(name, "getFormTokenVersion")
@@ -29,37 +34,44 @@ private var lyraSDK: Lyra? = Lyra
     return lyraSDK!!.getSDKVersion()
   }
 
-  override fun initialize(publicKey: String, options: ReadableMap, promise: Promise) {
+  override fun initialize(
+    publicKey: String,
+    apiServerName: String,
+    options: ReadableMap,
+    promise: Promise,
+  ) {
     try {
-      lyraSDK!!.initialize(context.applicationContext, publicKey, options.toHashMap())
+      lyraSDK!!.initialize(context.applicationContext, publicKey, apiServerName, options.toInitOptions())
       promise.resolve(null)
     } catch (lyraMobException: LyraMobException) {
       promise.reject(lyraMobException)
     }
   }
 
-  override fun process(formToken: String, options: ReadableMap, promise: Promise) {
+  override fun process(
+    formToken: String,
+    options: ReadableMap,
+    promise: Promise,
+  ) {
     Log.d(name, "process")
-    try{
-      lyraSDK!!.process((context.currentActivity as FragmentActivity).supportFragmentManager,
-        formToken, object : LyraHandler {
-          override fun onSuccess(lyraResponse: LyraResponse) {
-            var map: WritableMap? = null
-            try {
-              map = Util.convertJsonToMap(lyraResponse)
-              promise.resolve(map)
-            } catch (ex: JSONException) {
-              Log.e(name, ex.message, ex)
-            }
-          }
 
-          override fun onError(lyraException: LyraException, lyraResponse: LyraResponse?) {
-            promise.reject(lyraException)
-          }
-        }, options.toHashMap()
-      )
-    } catch(lyraMobException: LyraMobException){
-      promise.reject(lyraMobException)
+    moduleScope.launch {
+      try {
+        val lyraResponse =
+          Lyra.process(
+            (context.currentActivity as FragmentActivity).supportFragmentManager,
+            formToken,
+            options.toProcessOptions(),
+          )
+
+        try {
+          promise.resolve(lyraResponse.toWritableMap())
+        } catch (ex: JSONException) {
+          Log.e(name, ex.message, ex)
+        }
+      } catch (lyraException: LyraException) {
+        promise.reject(lyraException)
+      }
     }
   }
 

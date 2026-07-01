@@ -10,13 +10,13 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => min_ios_version_supported }
+  s.platforms    = { :ios => 26.2 }
   s.source       = { :git => "https://github.com/lyra/react-native-sdk-payment-module.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift,cpp}"
   s.private_header_files = "ios/**/*.h"
 
-  s.dependency "LyraPaymentSDK", "~> 2.8.11"
+  s.dependency "LyraPaymentSDK", "~> 4.0.1"
 
   install_modules_dependencies(s)
 end

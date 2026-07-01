@@ -1,7 +1,6 @@
 import ReactNativeSdkPaymentModule from './NativeReactNativeSdkPaymentModule';
 
 interface InitializeOptions {
-  apiServerName: String;
   applePayMerchantId?: String; // Apple only
   applePayMerchantName?: String; // Apple only
   nfcEnabled?: boolean; // Android only
@@ -9,10 +8,9 @@ interface InitializeOptions {
 }
 
 export enum PaymentMethods {
-  ALL = 'all',
-  APPLE_PAY = 'applePay', // Apple only
-  GOOGLE_PAY = 'googlePay', // Android only
-  CARD = 'cardPayment',
+  All = 0,
+  Card = 1,
+  NativePay = 2, // Google Pay / Apple Pay
 }
 
 interface ProcessOptions {
@@ -37,9 +35,14 @@ export function getSDKVersion(): string {
 
 export function initialize(
   publicKey: string,
+  apiServerName: string,
   options: InitializeOptions
 ): Promise<void> {
-  return ReactNativeSdkPaymentModule.initialize(publicKey, options);
+  return ReactNativeSdkPaymentModule.initialize(
+    publicKey,
+    apiServerName,
+    options
+  );
 }
 
 export function process(
