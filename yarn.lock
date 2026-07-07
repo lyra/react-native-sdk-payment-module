@@ -2278,13 +2278,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/schema-utils@npm:^55.0.4":
-  version: 55.0.4
-  resolution: "@expo/schema-utils@npm:55.0.4"
-  checksum: 10c0/3ad7fa4a69cb72d37ace9d6ec37d85956aaf539fa956e6219465929454f7ad76def86def24e7bbb63ef68377b77e68a865c39f9b514938e9059ba00fcb4bb1d0
-  languageName: node
-  linkType: hard
-
 "@expo/sdk-runtime-versions@npm:^1.0.0":
   version: 1.0.0
   resolution: "@expo/sdk-runtime-versions@npm:1.0.0"
@@ -6913,19 +6906,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-build-properties@npm:~55.0.15":
-  version: 55.0.15
-  resolution: "expo-build-properties@npm:55.0.15"
-  dependencies:
-    "@expo/schema-utils": "npm:^55.0.4"
-    resolve-from: "npm:^5.0.0"
-    semver: "npm:^7.6.0"
-  peerDependencies:
-    expo: "*"
-  checksum: 10c0/454109fabdcafde665c2c365b24c23b5d224a5838734d850425fe9f67d5d955c3639254cf2b6bef9b5edba882d0f38d75a5c0619df24f0ca7346bf9321a52704
-  languageName: node
-  linkType: hard
-
 "expo-constants@npm:~55.0.7":
   version: 55.0.7
   resolution: "expo-constants@npm:55.0.7"
@@ -7071,7 +7051,6 @@ __metadata:
   dependencies:
     "@types/react": "npm:~19.2.2"
     expo: "npm:~55.0.6"
-    expo-build-properties: "npm:~55.0.15"
     expo-status-bar: "npm:~55.0.4"
     react: "npm:19.2.0"
     react-native: "npm:0.83.2"

@@ -30,15 +30,7 @@
     },
     "plugins": [
       ["./plugins/withLyraPaymentSDK"],
-      ["./plugins/withLyraCardRecognizer"],
-      [
-        "expo-build-properties",
-        {
-          "ios": {
-            "deploymentTarget": "26.2"
-          }
-        }
-      ]
+      ["./plugins/withLyraCardRecognizer"]
     ]
   }
 }
