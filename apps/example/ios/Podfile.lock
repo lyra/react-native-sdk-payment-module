@@ -8,20 +8,18 @@ PODS:
   - hermes-engine (0.14.1):
     - hermes-engine/Pre-built (= 0.14.1)
   - hermes-engine/Pre-built (0.14.1)
-  - LyraCardsRecognizer (2.0.2)
+  - LyraCardScan (1.0.1)
   - LyraMaterial (1.0.6):
     - LyraMotion
   - LyraMotion (4.0.2)
-  - LyraPaymentSDK (2.8.11):
+  - LyraPaymentSDK (4.0.4):
     - LyraMaterial (~> 1.0.6)
     - LyraMotion (~> 4.0.2)
-    - LyraPaymentSDK/AdditionalSDK (= 2.8.11)
-    - SnapKit (~> 5.7.1)
-  - LyraPaymentSDK/AdditionalSDK (2.8.11):
-    - LyraCardsRecognizer
+    - LyraPaymentSDK/AdditionalSDK (= 4.0.4)
+  - LyraPaymentSDK/AdditionalSDK (4.0.4):
+    - LyraCardScan
     - LyraMaterial (~> 1.0.6)
     - LyraMotion (~> 4.0.2)
-    - SnapKit (~> 5.7.1)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1907,7 +1905,7 @@ PODS:
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
     - SocketRocket
-  - react-native-safe-area-context (5.7.0):
+  - react-native-safe-area-context (5.8.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -1925,8 +1923,8 @@ PODS:
     - React-graphics
     - React-ImageManager
     - React-jsi
-    - react-native-safe-area-context/common (= 5.7.0)
-    - react-native-safe-area-context/fabric (= 5.7.0)
+    - react-native-safe-area-context/common (= 5.8.0)
+    - react-native-safe-area-context/fabric (= 5.8.0)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-renderercss
@@ -1937,7 +1935,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-safe-area-context/common (5.7.0):
+  - react-native-safe-area-context/common (5.8.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -1965,7 +1963,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-safe-area-context/fabric (5.7.0):
+  - react-native-safe-area-context/fabric (5.8.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2558,7 +2556,7 @@ PODS:
     - fmt
     - glog
     - hermes-engine
-    - LyraPaymentSDK (~> 2.8.11)
+    - LyraPaymentSDK (= 4.0.4)
     - RCT-Folly
     - RCT-Folly/Fabric
     - RCTRequired
@@ -2580,7 +2578,6 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - SnapKit (5.7.1)
   - SocketRocket (0.7.1)
   - Yoga (0.0.0)
 
@@ -2592,7 +2589,6 @@ DEPENDENCIES:
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
-  - LyraCardsRecognizer
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
   - RCTRequired (from `../node_modules/react-native/Libraries/Required`)
@@ -2670,11 +2666,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - LyraCardsRecognizer
+    - LyraCardScan
     - LyraMaterial
     - LyraMotion
     - LyraPaymentSDK
-    - SnapKit
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -2846,10 +2841,10 @@ SPEC CHECKSUMS:
   fmt: 530618a01105dae0fa3a2f27c81ae11fa8f67eac
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: 6d4d28eeaeec98366543216134a79ba93794262a
-  LyraCardsRecognizer: df5ce5d154fb8ef843cd4ed66a29bb3b5a93526a
+  LyraCardScan: b1294015cc9b11dda3830960791490f676809f8d
   LyraMaterial: d9cbb012b57547b5ff4576c7246af7e80623d4e6
   LyraMotion: e3f502695b475f938c0755ac7731300beb4e8aa2
-  LyraPaymentSDK: cfdbffdeb1dd4ff349edae9a245059bb7f3d76d4
+  LyraPaymentSDK: 82f39f6952178043ea92b678531c388f2601c3e8
   RCT-Folly: b29feb752b08042c62badaef7d453f3bb5e6ae23
   RCTDeprecation: 66da7829306a6741edb3f866687c13a4938ca5f4
   RCTRequired: c6853c7a563306968f833210c476741e09fc5f61
@@ -2886,7 +2881,7 @@ SPEC CHECKSUMS:
   React-logger: 42d166b8087c17202c0c5d052a49176e0e0359d8
   React-Mapbuffer: 9733d6346c2e06a3156dd5d6775068028e888b81
   React-microtasksnativemodule: 375752f191e0f6a831cfab34d23c9bc3ee5c0c1f
-  react-native-safe-area-context: 0f4986a88ec555aff660503b483d6e4bd6980a9a
+  react-native-safe-area-context: 7ee594b2c2aa287757c1ba78ac70278305bc7807
   React-NativeModulesApple: 2f114735ec6367d0499e1bdf45026575600777bc
   React-networking: fefe9156c8669636ca8ed50892e596addc609c93
   React-oscompat: 7427e1c3527c66edd789d63d0603c68b52b50a12
@@ -2920,11 +2915,10 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 105856c6da6fe71c545dec3c2466ae04f25f9a73
   ReactCodegen: 27472f60aa788865a1bd811d0853d6c20cae7324
   ReactCommon: 506ceb24983c6b80e0075968be21aac74a367739
-  ReactNativeSdkPaymentModule: 12e7aae6b4af3cc24d18a959e556ef7408872f38
-  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  ReactNativeSdkPaymentModule: ebb58cecff810ff2e19574d7ba10b8ee92338f60
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: b33db4d2a1e30232ac13939bb2e09daeb4ffd09c
 
-PODFILE CHECKSUM: 8e4cf61cf1a91901932d3bee4541f1ab5a63d266
+PODFILE CHECKSUM: 82224bd2784beecdf45be030742175a673977cdb
 
 COCOAPODS: 1.15.2

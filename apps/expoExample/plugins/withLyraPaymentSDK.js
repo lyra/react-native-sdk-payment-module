@@ -5,7 +5,7 @@ function withLyraPaymentSDK(config) {
     let contents = config.modResults.contents;
 
     const block = `
-  dynamic_frameworks = ['LyraPaymentSDK', 'LyraMotion', 'LyraMaterial', 'SnapKit']
+  dynamic_frameworks = ['LyraPaymentSDK', 'LyraMotion', 'LyraMaterial']
 
   pre_install do |installer|
     installer.pod_targets.each do |pod|

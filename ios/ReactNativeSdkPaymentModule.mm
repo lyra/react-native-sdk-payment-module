@@ -1,6 +1,7 @@
 #import "ReactNativeSdkPaymentModule.h"
 #import <LyraPaymentSDK/LyraPaymentSDK-Swift.h>
 #import <React/RCTUtils.h>
+#import "RNPaymentSDKOptionsMapper.h"
 
 @implementation ReactNativeSdkPaymentModule
 - (NSNumber *)getFormTokenVersion{
@@ -11,10 +12,12 @@
   return [Lyra getSDKVersion];
 }
 
-- (void)initialize:(nonnull NSString *)publicKey options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+- (void)initialize:(nonnull NSString *)publicKey apiServerName:(nonnull NSString *)apiServerName options:(NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   NSError *error = nil;
   
-  [Lyra initialize:publicKey :configurationOptions error:&error];
+  InitOptions *nativeOptions = [RNPaymentSDKOptionsMapper initOptionsFromDictionary:configurationOptions];
+  
+  [Lyra initialize:publicKey :apiServerName :nativeOptions error:&error];
   
   if (error != nil) {
     reject(@"MOB_001", @"SDK initialization failed.", error);
@@ -23,10 +26,12 @@
   }
 }
 
-- (void)process:(nonnull NSString *)formToken options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+- (void)process:(nonnull NSString *)formToken options:(NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   UIViewController *presentedViewController = RCTPresentedViewController();
   NSError *error = nil;
   
+  ProcessOptions *nativeOptions = [RNPaymentSDKOptionsMapper processOptionsFromDictionary:configurationOptions];
+
   [Lyra process:presentedViewController :formToken
     onSuccess:^(LyraResponse *lyraResponse) {
         NSError *errorJSON = nil;
@@ -37,7 +42,7 @@
         reject(lyraError.errorCode, lyraError.errorMessage, nil);
         return;
     }
-    :configurationOptions error:&error];
+    :nativeOptions error:&error];
 
     if (error != nil) {
         reject(@"MOB_002", @"SDK initialization is required before calling process", error);

@@ -39,8 +39,7 @@ export default function App() {
   useLayoutEffect(() => {
     try {
       // 1.Initialize Payment SDK
-      initialize(Config.publicKey, {
-        apiServerName: Config.apiServerName,
+      initialize(Config.publicKey, Config.apiServerName, {
         // cardScanningEnabled: true,
       });
     } catch (e) {
