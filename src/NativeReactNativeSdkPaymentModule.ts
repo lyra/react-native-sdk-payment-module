@@ -7,9 +7,9 @@ export interface Spec extends TurboModule {
   initialize(
     publicKey: string,
     apiServerName: string,
-    options: Object
+    options?: Object
   ): Promise<void>;
-  process(formToken: string, options: Object): Promise<void>;
+  process(formToken: string, options?: Object): Promise<void>;
   cancelProcess(): void;
 }
 

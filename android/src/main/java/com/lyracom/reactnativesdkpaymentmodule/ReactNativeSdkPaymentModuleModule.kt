@@ -8,6 +8,8 @@ import com.facebook.react.bridge.ReadableMap
 import com.lyra.sdk.Lyra
 import com.lyra.sdk.exception.LyraException
 import com.lyra.sdk.exception.LyraMobException
+import com.lyra.sdk.model.InitOptions
+import com.lyra.sdk.model.ProcessOptions
 import com.lyracom.reactnativesdkpaymentmodule.extensions.toInitOptions
 import com.lyracom.reactnativesdkpaymentmodule.extensions.toProcessOptions
 import com.lyracom.reactnativesdkpaymentmodule.extensions.toWritableMap
@@ -34,26 +36,19 @@ class ReactNativeSdkPaymentModuleModule(
     return lyraSDK!!.getSDKVersion()
   }
 
-  override fun initialize(
-    publicKey: String,
-    apiServerName: String,
-    options: ReadableMap,
-    promise: Promise,
-  ) {
+  override fun initialize(publicKey: String, apiServerName: String, options: ReadableMap?, promise: Promise) {
     try {
-      lyraSDK!!.initialize(context.applicationContext, publicKey, apiServerName, options.toInitOptions())
+      val initOptions = options?.toInitOptions() ?: InitOptions()
+      lyraSDK!!.initialize(context.applicationContext, publicKey, apiServerName, initOptions)
       promise.resolve(null)
     } catch (lyraMobException: LyraMobException) {
       promise.reject(lyraMobException)
     }
   }
 
-  override fun process(
-    formToken: String,
-    options: ReadableMap,
-    promise: Promise,
-  ) {
+  override fun process(formToken: String, options: ReadableMap?, promise: Promise) {
     Log.d(name, "process")
+    val processOptions = options?.toProcessOptions() ?: ProcessOptions()
 
     moduleScope.launch {
       try {
@@ -61,7 +56,7 @@ class ReactNativeSdkPaymentModuleModule(
           Lyra.process(
             (context.currentActivity as FragmentActivity).supportFragmentManager,
             formToken,
-            options.toProcessOptions(),
+            processOptions
           )
 
         try {

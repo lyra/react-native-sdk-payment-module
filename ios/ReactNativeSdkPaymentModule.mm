@@ -12,7 +12,7 @@
   return [Lyra getSDKVersion];
 }
 
-- (void)initialize:(nonnull NSString *)publicKey apiServerName:(nonnull NSString *)apiServerName options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+- (void)initialize:(nonnull NSString *)publicKey apiServerName:(nonnull NSString *)apiServerName options:(NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   NSError *error = nil;
   
   InitOptions *nativeOptions = [RNPaymentSDKOptionsMapper initOptionsFromDictionary:configurationOptions];
@@ -26,7 +26,7 @@
   }
 }
 
-- (void)process:(nonnull NSString *)formToken options:(nonnull NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+- (void)process:(nonnull NSString *)formToken options:(NSDictionary *)configurationOptions resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   UIViewController *presentedViewController = RCTPresentedViewController();
   NSError *error = nil;
   
