@@ -33,7 +33,9 @@
   ],
   "scripts": {
     "example": "yarn workspace @lyracom/react-native-sdk-payment-module-example",
-    "clean": "del-cli android/generated ios/generated apps/example/android/build apps/example/android/app/build apps/example/ios/build lib",
+    "open:ios": "open -a \"Xcode\" apps/example/ios",
+    "open:android": "open -a \"Android Studio\" apps/example/android",
+    "clean": "del-cli apps/example/android/build apps/example/android/app/build apps/example/ios/build lib",
     "prepare": "bob build",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -97,7 +99,6 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "codegen",
       [
         "module",
         {
@@ -116,10 +117,6 @@
     "name": "ReactNativeSdkPaymentModuleSpec",
     "type": "modules",
     "jsSrcsDir": "src",
-    "outputDir": {
-      "android": "android/generated",
-      "ios": "ios/generated"
-    },
     "android": {
       "javaPackageName": "com.lyracom.reactnativesdkpaymentmodule"
     }
