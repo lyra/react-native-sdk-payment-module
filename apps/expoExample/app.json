@@ -28,9 +28,6 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.expoExample"
     },
-    "plugins": [
-      ["./plugins/withLyraPaymentSDK"],
-      ["./plugins/withLyraCardRecognizer"]
-    ]
+    "plugins": [["./plugins/withLyraPaymentSDK"]]
   }
 }
