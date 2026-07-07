@@ -117,6 +117,4 @@ dependencies {
         implementation jscFlavor
     }
 
-    // Card Scan lib
-    implementation 'com.lyra:cards-camera-recognizer:1.0.+'
 }
