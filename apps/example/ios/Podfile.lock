@@ -8,18 +8,6 @@ PODS:
   - hermes-engine (0.14.1):
     - hermes-engine/Pre-built (= 0.14.1)
   - hermes-engine/Pre-built (0.14.1)
-  - LyraCardScan (1.0.1)
-  - LyraMaterial (1.0.12):
-    - LyraMotion
-  - LyraMotion (4.0.6)
-  - LyraPaymentSDK (4.2.2):
-    - LyraMaterial (~> 1.0.12)
-    - LyraMotion (~> 4.0.6)
-    - LyraPaymentSDK/AdditionalSDK (= 4.2.2)
-  - LyraPaymentSDK/AdditionalSDK (4.2.2):
-    - LyraCardScan
-    - LyraMaterial (~> 1.0.12)
-    - LyraMotion (~> 4.0.6)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -2549,14 +2537,13 @@ PODS:
     - React-perflogger (= 0.83.5)
     - React-utils (= 0.83.5)
     - SocketRocket
-  - ReactNativeSdkPaymentModule (4.0.1):
+  - ReactNativeSdkPaymentModule (4.1.0):
     - boost
     - DoubleConversion
     - fast_float
     - fmt
     - glog
     - hermes-engine
-    - LyraPaymentSDK (= 4.2.2)
     - RCT-Folly
     - RCT-Folly/Fabric
     - RCTRequired
@@ -2666,10 +2653,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - LyraCardScan
-    - LyraMaterial
-    - LyraMotion
-    - LyraPaymentSDK
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -2841,10 +2824,6 @@ SPEC CHECKSUMS:
   fmt: 530618a01105dae0fa3a2f27c81ae11fa8f67eac
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: 2fc25fb14e86ba4d52f578789feb29b696f87c2e
-  LyraCardScan: b1294015cc9b11dda3830960791490f676809f8d
-  LyraMaterial: 303a02b83b2d64fa9dc3c4d52b2f6c587ba70865
-  LyraMotion: fa3c1f1c84b4a04f529d3f97c05ad79b9c3dfd18
-  LyraPaymentSDK: 3b58458c820c90056bec6a8d72735c52dc6be23a
   RCT-Folly: 121436bcc4611f6bde5c09bf35f0a7a82cef1969
   RCTDeprecation: 66da7829306a6741edb3f866687c13a4938ca5f4
   RCTRequired: c6853c7a563306968f833210c476741e09fc5f61
@@ -2915,10 +2894,10 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 105856c6da6fe71c545dec3c2466ae04f25f9a73
   ReactCodegen: 27472f60aa788865a1bd811d0853d6c20cae7324
   ReactCommon: 506ceb24983c6b80e0075968be21aac74a367739
-  ReactNativeSdkPaymentModule: 86880d86e9694f5d460040c3c8922cb7a8bd81f7
+  ReactNativeSdkPaymentModule: 467f08f7f2f642bfeca32a490526fb754f5690fb
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: b33db4d2a1e30232ac13939bb2e09daeb4ffd09c
 
-PODFILE CHECKSUM: 018ba52cbdf85eed98f7b82eff244f5eeb447c1d
+PODFILE CHECKSUM: b9fdb547fbdda30040dc9289172c89a10f85e1a1
 
 COCOAPODS: 1.15.2

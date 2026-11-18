@@ -8,6 +8,7 @@
     "ios": "expo run:ios --device"
   },
   "dependencies": {
+    "@lyracom/react-native-sdk-payment-module": "workspace:*",
     "expo": "~55.0.6",
     "expo-status-bar": "~55.0.4",
     "react": "19.2.0",
