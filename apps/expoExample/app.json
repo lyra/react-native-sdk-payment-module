@@ -28,6 +28,6 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.expoExample"
     },
-    "plugins": [["./plugins/withLyraPaymentSDK"]]
+    "plugins": ["@lyracom/react-native-sdk-payment-module"]
   }
 }

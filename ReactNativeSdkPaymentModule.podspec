@@ -1,6 +1,11 @@
 require "json"
+require_relative "ios/lyra_payment_sdk"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+
+unless respond_to?(:spm_dependency, true)
+  raise Pod::Informative, "LyraPaymentSDK requires React Native 0.76 or newer with the spm_dependency helper. Upgrade React Native and load react_native_pods.rb before installing this module."
+end
 
 Pod::Spec.new do |s|
   s.name         = "ReactNativeSdkPaymentModule"
@@ -16,7 +21,11 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift,cpp}"
   s.private_header_files = "ios/**/*.h"
 
-  s.dependency "LyraPaymentSDK", "4.2.2"
+  spm_dependency(s,
+    url: LyraPaymentSDKSPM::URL,
+    requirement: { kind: "exactVersion", version: LyraPaymentSDKSPM::VERSION },
+    products: [LyraPaymentSDKSPM::PRODUCT]
+  )
 
   install_modules_dependencies(s)
 end

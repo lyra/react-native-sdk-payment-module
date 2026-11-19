@@ -1,4 +1,5 @@
 ENV['RCT_NEW_ARCH_ENABLED'] = '1'
+require_relative '../../../ios/lyra_payment_sdk'
 
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
@@ -19,28 +20,11 @@ end
 target 'ReactNativeSdkPaymentModuleExample' do
   config = use_native_modules!
 
-  dynamic_frameworks = ['LyraPaymentSDK', 'LyraMotion', 'LyraMaterial']
-
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
-
-    pre_install do |installer|
-    system("cd ../../ && npx bob build --target codegen")
-    
-    installer.pod_targets.each do |pod|
-      if dynamic_frameworks.include?(pod.name)
-        def pod.dynamic_framework?;
-          true
-        end
-        def pod.build_type;
-          Pod::BuildType.dynamic_framework
-        end
-      end
-    end
-  end
 
   post_install do |installer|
     react_native_post_install(
@@ -49,5 +33,6 @@ target 'ReactNativeSdkPaymentModuleExample' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+    lyra_payment_post_install(installer)
   end
 end
