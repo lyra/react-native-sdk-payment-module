@@ -6,17 +6,13 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.expoExample",
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to scan cards."
-      }
+      },
+      "appleTeamId": "YNB6GZCAPQ"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +24,22 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.expoExample"
     },
-    "plugins": [["./plugins/withLyraPaymentSDK"]]
+    "plugins": [
+      [
+        "./plugins/withLyraPaymentSDK"
+      ],
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "experiments": {
+      "reactCompiler": true
+    }
   }
 }
