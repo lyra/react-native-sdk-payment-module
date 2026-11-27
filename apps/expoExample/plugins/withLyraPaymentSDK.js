@@ -1,8 +1,8 @@
 const { withPodfile } = require('@expo/config-plugins');
 
 function withLyraPaymentSDK(config) {
-  return withPodfile(config, (config) => {
-    let contents = config.modResults.contents;
+  return withPodfile(config, (podfileConfig) => {
+    let contents = podfileConfig.modResults.contents;
 
     const block = `
   dynamic_frameworks = ['LyraPaymentSDK', 'LyraMotion', 'LyraMaterial']
@@ -32,8 +32,8 @@ function withLyraPaymentSDK(config) {
       }
     }
 
-    config.modResults.contents = contents;
-    return config;
+    podfileConfig.modResults.contents = contents;
+    return podfileConfig;
   });
 }
 

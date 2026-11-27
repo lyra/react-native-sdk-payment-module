@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.expoExample",
@@ -28,6 +23,22 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.expoExample"
     },
-    "plugins": [["./plugins/withLyraPaymentSDK"]]
+    "plugins": [
+      [
+        "./plugins/withLyraPaymentSDK"
+      ],
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "experiments": {
+      "reactCompiler": true
+    }
   }
 }
