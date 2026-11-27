@@ -11,8 +11,7 @@
       "bundleIdentifier": "com.expoExample",
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to scan cards."
-      },
-      "appleTeamId": "YNB6GZCAPQ"
+      }
     },
     "android": {
       "adaptiveIcon": {
